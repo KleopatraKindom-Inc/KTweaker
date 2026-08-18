@@ -13,4 +13,5 @@
 ## Сборка
 
 Запустить build.bat
+
 Файл программы будет publish\KleopatraKindomTweaker.exe
