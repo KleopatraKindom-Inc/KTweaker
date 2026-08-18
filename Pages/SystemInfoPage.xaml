@@ -1,0 +1,23 @@
+<Page x:Class="KleopatraKindomTweaker.Pages.SystemInfoPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:svc="clr-namespace:KleopatraKindomTweaker.Services">
+    <StackPanel>
+        <TextBlock Text="{Binding Source={x:Static svc:LocalizationService.Instance}, Path=[SystemInfoTitle]}"
+                   FontSize="24" FontWeight="Bold"
+                   Foreground="{DynamicResource TextPrimaryBrush}" Margin="0,0,0,16"/>
+
+        <Border Style="{StaticResource CardStyle}" Margin="0,0,0,12">
+            <StackPanel x:Name="InfoPanel"/>
+        </Border>
+
+        <Border Style="{StaticResource CardStyle}">
+            <StackPanel>
+                <TextBlock Text="{Binding Source={x:Static svc:LocalizationService.Instance}, Path=[DisksTitle]}"
+                           FontWeight="SemiBold" FontSize="15"
+                           Foreground="{DynamicResource TextPrimaryBrush}" Margin="0,0,0,8"/>
+                <ItemsControl x:Name="DisksPanel"/>
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</Page>

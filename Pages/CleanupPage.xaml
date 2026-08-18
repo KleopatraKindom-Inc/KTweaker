@@ -1,0 +1,52 @@
+<Page x:Class="KleopatraKindomTweaker.Pages.CleanupPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:svc="clr-namespace:KleopatraKindomTweaker.Services">
+    <StackPanel>
+        <Grid Margin="0,0,0,16">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{Binding Source={x:Static svc:LocalizationService.Instance}, Path=[CleanupTitle]}"
+                       FontSize="24" FontWeight="Bold"
+                       Foreground="{DynamicResource TextPrimaryBrush}"/>
+            <Button Grid.Column="1"
+                    Content="{Binding Source={x:Static svc:LocalizationService.Instance}, Path=[ScanButton]}"
+                    Margin="0,0,8,0" Padding="14,8" Click="Scan_Click"/>
+            <Button Grid.Column="2"
+                    Content="{Binding Source={x:Static svc:LocalizationService.Instance}, Path=[CleanSelectedButton]}"
+                    Style="{StaticResource PrimaryButtonStyle}"
+                    Click="Clean_Click"/>
+        </Grid>
+
+        <ItemsControl x:Name="TargetsControl">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Border Style="{StaticResource CardStyle}" Margin="0,0,0,8">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <CheckBox Grid.Column="0" IsChecked="{Binding IsSelected}" VerticalAlignment="Center" Margin="0,0,12,0"/>
+                            <StackPanel Grid.Column="1">
+                                <TextBlock Text="{Binding Label}" FontWeight="SemiBold"
+                                           Foreground="{DynamicResource TextPrimaryBrush}"/>
+                                <TextBlock Text="{Binding Path}" FontSize="11"
+                                           Foreground="{DynamicResource TextSecondaryBrush}"/>
+                            </StackPanel>
+                            <TextBlock Grid.Column="2" Text="{Binding SizeLabel}" VerticalAlignment="Center"
+                                       Foreground="{DynamicResource AccentBrush}" FontWeight="SemiBold"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <TextBlock x:Name="ResultText" Margin="0,10,0,0" TextWrapping="Wrap"
+                   Foreground="{DynamicResource TextSecondaryBrush}"/>
+    </StackPanel>
+</Page>

@@ -1,0 +1,57 @@
+<Window x:Class="KleopatraKindomTweaker.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:svc="clr-namespace:KleopatraKindomTweaker.Services"
+        Title="KTweaker" Height="720" Width="1180"
+        Icon="/app.ico"
+        WindowStartupLocation="CenterScreen"
+        Background="{DynamicResource BgBrush}"
+        FontFamily="Segoe UI"
+        Closing="Window_Closing">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="230"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Sidebar -->
+        <Border Grid.Column="0" Background="{DynamicResource SidebarBrush}">
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Top" Margin="16,22,16,20">
+                    <TextBlock Text="KTweaker" FontSize="19" FontWeight="Bold"
+                               Foreground="{DynamicResource TextPrimaryBrush}"/>
+                </StackPanel>
+
+                <StackPanel Margin="0,0,0,14" DockPanel.Dock="Bottom">
+                    <RadioButton x:Name="NavSettings" GroupName="Nav"
+                                 Content="{Binding Source={x:Static svc:LocalizationService.Instance}, Path=[NavSettings]}"
+                                 Style="{StaticResource NavButtonStyle}" Checked="Nav_Checked"/>
+                </StackPanel>
+
+                <StackPanel Margin="0,10,0,0">
+                    <RadioButton x:Name="NavDashboard" GroupName="Nav"
+                                 Content="{Binding Source={x:Static svc:LocalizationService.Instance}, Path=[NavDashboard]}"
+                                 Style="{StaticResource NavButtonStyle}" Checked="Nav_Checked"/>
+                    <RadioButton x:Name="NavTweaks" GroupName="Nav"
+                                 Content="{Binding Source={x:Static svc:LocalizationService.Instance}, Path=[NavTweaks]}"
+                                 Style="{StaticResource NavButtonStyle}" Checked="Nav_Checked"/>
+                    <RadioButton x:Name="NavProcesses" GroupName="Nav"
+                                 Content="{Binding Source={x:Static svc:LocalizationService.Instance}, Path=[NavProcesses]}"
+                                 Style="{StaticResource NavButtonStyle}" Checked="Nav_Checked"/>
+                    <RadioButton x:Name="NavCleanup" GroupName="Nav"
+                                 Content="{Binding Source={x:Static svc:LocalizationService.Instance}, Path=[NavCleanup]}"
+                                 Style="{StaticResource NavButtonStyle}" Checked="Nav_Checked"/>
+                    <RadioButton x:Name="NavUwp" GroupName="Nav"
+                                 Content="{Binding Source={x:Static svc:LocalizationService.Instance}, Path=[NavUwp]}"
+                                 Style="{StaticResource NavButtonStyle}" Checked="Nav_Checked"/>
+                    <RadioButton x:Name="NavSystemInfo" GroupName="Nav"
+                                 Content="{Binding Source={x:Static svc:LocalizationService.Instance}, Path=[NavSystemInfo]}"
+                                 Style="{StaticResource NavButtonStyle}" Checked="Nav_Checked"/>
+                </StackPanel>
+            </DockPanel>
+        </Border>
+
+        <!-- Content -->
+        <Frame x:Name="ContentFrame" Grid.Column="1" NavigationUIVisibility="Hidden" Margin="24"/>
+    </Grid>
+</Window>
