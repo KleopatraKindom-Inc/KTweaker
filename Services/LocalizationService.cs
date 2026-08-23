@@ -88,9 +88,9 @@ public class LocalizationService : INotifyPropertyChanged
                                      "Not enough permissions. Run the app as administrator.",
                                      "Недостатньо прав. Запусти застосунок від імені адміністратора."),
         ["AboutSectionTitle"] = ("О программе", "About", "Про програму"),
-        ["AboutText"] = ("KleopatraKindomTweaker by KleoptraKindom, Inc.",
-                          "KleopatraKindomTweaker by KleoptraKindom, Inc.",
-                          "KleopatraKindomTweaker by KleoptraKindom, Inc."),
+        ["AboutText"] = ("KleopatraKindomTweaker v2.0 by KleoptraKindom, Inc.",
+                          "KleopatraKindomTweaker v2.0 by KleoptraKindom, Inc.",
+                          "KleopatraKindomTweaker v2.0 by KleoptraKindom, Inc."),
 
         // Dashboard summary (code-behind formatted strings)
         ["SummaryOs"] = ("ОС: {0}", "OS: {0}", "ОС: {0}"),
@@ -338,6 +338,28 @@ public class LocalizationService : INotifyPropertyChanged
         ["TwDisableInsiderService_Desc"] = ("Отключает фоновую службу предварительных сборок Windows Insider.", "Disables the background service for the Windows Insider preview program.", "Вимикає фонову службу попередніх збірок Windows Insider."),
         ["TwDisableLLMNR_Title"] = ("Отключить LLMNR", "Disable LLMNR", "Вимкнути LLMNR"),
         ["TwDisableLLMNR_Desc"] = ("Отключает протокол разрешения имён в локальной сети (Link-Local Multicast Name Resolution).", "Disables Link-Local Multicast Name Resolution on the local network.", "Вимикає протокол розв'язання імен у локальній мережі (Link-Local Multicast Name Resolution)."),
+
+        // --- Round 4: v2.0 expansion translations (auto-generated) ---
+        ["TwDisableStickyKeysHotkey_Title"] = ("Отключить залипание клавиш по 5xShift", "Disable Sticky Keys hotkey (5x Shift)", "Вимкнути залипання клавіш по 5xShift"),
+        ["TwDisableStickyKeysHotkey_Desc"] = ("Запрещает включение залипания клавиш пятикратным нажатием Shift.", "Prevents Sticky Keys from being toggled by pressing Shift five times.", "Забороняє вмикання залипання клавіш п'ятикратним натисканням Shift."),
+        ["TwDisableToggleKeysHotkey_Title"] = ("Отключить озвучку клавиш по удержанию NumLock", "Disable Toggle Keys hotkey (hold NumLock)", "Вимкнути озвучення клавіш утриманням NumLock"),
+        ["TwDisableToggleKeysHotkey_Desc"] = ("Запрещает включение звукового сопровождения клавиш удержанием NumLock 5 секунд.", "Prevents Toggle Keys from being enabled by holding NumLock for 5 seconds.", "Забороняє вмикання звукового супроводу клавіш утриманням NumLock 5 секунд."),
+        ["TwDisableAeroShake_Title"] = ("Отключить сворачивание окон встряхиванием", "Disable Aero Shake (minimize by shaking)", "Вимкнути згортання вікон струшуванням"),
+        ["TwDisableAeroShake_Desc"] = ("Запрещает сворачивание остальных окон при встряхивании заголовка активного окна.", "Prevents other windows from minimizing when you shake an active window's title bar.", "Забороняє згортання решти вікон під час струшування заголовка активного вікна."),
+        ["TwDisableStartupTiles_Title"] = ("Отключить всплывающие анимации плиток в Пуск", "Disable Start menu tile animations", "Вимкнути анімації плиток у меню Пуск"),
+        ["TwDisableStartupTiles_Desc"] = ("Отключает анимацию появления живых плиток в меню Пуск при запуске.", "Disables the animation shown when live tiles appear in the Start menu at launch.", "Вимикає анімацію появи живих плиток у меню Пуск під час запуску."),
+        ["TwDisableAppCompatEngine_Title"] = ("Отключить сбор данных совместимости приложений", "Disable Application Compatibility data collection", "Вимкнути збір даних сумісності застосунків"),
+        ["TwDisableAppCompatEngine_Desc"] = ("Останавливает фоновый сбор диагностических данных о совместимости запускаемых программ.", "Stops the background collection of app compatibility diagnostic data.", "Зупиняє фоновий збір діагностичних даних про сумісність запущених програм."),
+        ["TwDisableHandwritingErrorReports_Title"] = ("Отключить отчёты об ошибках рукописного ввода", "Disable handwriting error reporting", "Вимкнути звіти про помилки рукописного введення"),
+        ["TwDisableHandwritingErrorReports_Desc"] = ("Запрещает отправку данных о распознавании рукописного ввода в Microsoft.", "Prevents handwriting recognition data from being sent to Microsoft.", "Забороняє надсилання даних розпізнавання рукописного введення до Microsoft."),
+        ["TwDisableFirstLogonAnimation_Title"] = ("Отключить приветственную анимацию при первом входе", "Disable first sign-in animation", "Вимкнути вітальну анімацію під час першого входу"),
+        ["TwDisableFirstLogonAnimation_Desc"] = ("Ускоряет первый вход в систему, пропуская анимацию приветствия.", "Speeds up the first sign-in by skipping the welcome animation.", "Пришвидшує перший вхід у систему, пропускаючи вітальну анімацію."),
+        ["TwDisableSmartScreenExplorer_Title"] = ("Отключить проверку файлов SmartScreen в Проводнике", "Disable SmartScreen check for downloaded files", "Вимкнути перевірку файлів SmartScreen у Провіднику"),
+        ["TwDisableSmartScreenExplorer_Desc"] = ("Проводник перестаёт проверять запускаемые файлы через облачный SmartScreen.", "Explorer stops checking launched files against the cloud SmartScreen service.", "Провідник перестає перевіряти файли, що запускаються, через хмарний SmartScreen."),
+        ["TwEnableClearTypeText_Title"] = ("Улучшить сглаживание шрифтов (ClearType)", "Improve font smoothing (ClearType)", "Покращити згладжування шрифтів (ClearType)"),
+        ["TwEnableClearTypeText_Desc"] = ("Включает технологию сглаживания шрифтов ClearType для более чёткого текста на ЖК-экранах.", "Enables ClearType font smoothing for sharper text on LCD screens.", "Вмикає технологію згладжування шрифтів ClearType для чіткішого тексту на РК-екранах."),
+        ["TwDisableOfferRemoteAssistance_Title"] = ("Запретить удалённую помощь без запроса", "Block unsolicited Remote Assistance offers", "Заборонити віддалену допомогу без запиту"),
+        ["TwDisableOfferRemoteAssistance_Desc"] = ("Запрещает другим людям предлагать удалённую помощь без явного запроса пользователя.", "Prevents other people from offering unsolicited Remote Assistance sessions.", "Забороняє іншим людям пропонувати віддалену допомогу без явного запиту користувача."),
 
         // UWP app install/removal page
         ["NavUwp"] = ("📦  UWP-приложения", "📦  UWP Apps", "📦  UWP-застосунки"),

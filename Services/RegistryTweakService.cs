@@ -1284,6 +1284,131 @@ public class RegistryTweakService
                 ValueKind = RegistryValueKind.DWord,
                 OnValue = 0, OffValue = 1, MissingMeansValue = 1
             },
+
+
+            // --- Round 4: v2.0 expansion (auto-generated) ---
+            new()
+            {
+                Key = "TwDisableStickyKeysHotkey",
+                Title = loc["TwDisableStickyKeysHotkey_Title"],
+                Description = loc["TwDisableStickyKeysHotkey_Desc"],
+                Category = loc["CatSystem"],
+                Hive = RegistryHive.CurrentUser,
+                KeyPath = @"Control Panel\Accessibility\StickyKeys",
+                ValueName = "Flags",
+                ValueKind = RegistryValueKind.String,
+                OnValue = "506", OffValue = "58", MissingMeansValue = "506"
+            },
+            new()
+            {
+                Key = "TwDisableToggleKeysHotkey",
+                Title = loc["TwDisableToggleKeysHotkey_Title"],
+                Description = loc["TwDisableToggleKeysHotkey_Desc"],
+                Category = loc["CatSystem"],
+                Hive = RegistryHive.CurrentUser,
+                KeyPath = @"Control Panel\Accessibility\ToggleKeys",
+                ValueName = "Flags",
+                ValueKind = RegistryValueKind.String,
+                OnValue = "62", OffValue = "58", MissingMeansValue = "62"
+            },
+            new()
+            {
+                Key = "TwDisableAeroShake",
+                Title = loc["TwDisableAeroShake_Title"],
+                Description = loc["TwDisableAeroShake_Desc"],
+                Category = loc["CatPersonalization"],
+                Hive = RegistryHive.CurrentUser,
+                KeyPath = @"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced",
+                ValueName = "DisallowShaking",
+                ValueKind = RegistryValueKind.DWord,
+                OnValue = 1, OffValue = 0, MissingMeansValue = 0,
+                RequiresExplorerRestart = true
+            },
+            new()
+            {
+                Key = "TwDisableStartupTiles",
+                Title = loc["TwDisableStartupTiles_Title"],
+                Description = loc["TwDisableStartupTiles_Desc"],
+                Category = loc["CatPersonalization"],
+                Hive = RegistryHive.CurrentUser,
+                KeyPath = @"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced",
+                ValueName = "NoStartupSoundEffects",
+                ValueKind = RegistryValueKind.DWord,
+                OnValue = 1, OffValue = 0, MissingMeansValue = 0
+            },
+            new()
+            {
+                Key = "TwDisableAppCompatEngine",
+                Title = loc["TwDisableAppCompatEngine_Title"],
+                Description = loc["TwDisableAppCompatEngine_Desc"],
+                Category = loc["CatPrivacy"],
+                Hive = RegistryHive.LocalMachine,
+                KeyPath = @"SOFTWARE\Policies\Microsoft\Windows\AppCompat",
+                ValueName = "DisableInventory",
+                ValueKind = RegistryValueKind.DWord,
+                OnValue = 1, OffValue = 0, MissingMeansValue = 0
+            },
+            new()
+            {
+                Key = "TwDisableHandwritingErrorReports",
+                Title = loc["TwDisableHandwritingErrorReports_Title"],
+                Description = loc["TwDisableHandwritingErrorReports_Desc"],
+                Category = loc["CatPrivacy"],
+                Hive = RegistryHive.CurrentUser,
+                KeyPath = @"Software\Microsoft\Windows\CurrentVersion\TabletPC",
+                ValueName = "PreventHandwritingErrorReports",
+                ValueKind = RegistryValueKind.DWord,
+                OnValue = 1, OffValue = 0, MissingMeansValue = 0
+            },
+            new()
+            {
+                Key = "TwDisableFirstLogonAnimation",
+                Title = loc["TwDisableFirstLogonAnimation_Title"],
+                Description = loc["TwDisableFirstLogonAnimation_Desc"],
+                Category = loc["CatSystem"],
+                Hive = RegistryHive.LocalMachine,
+                KeyPath = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System",
+                ValueName = "EnableFirstLogonAnimation",
+                ValueKind = RegistryValueKind.DWord,
+                OnValue = 0, OffValue = 1, MissingMeansValue = 1
+            },
+            new()
+            {
+                Key = "TwDisableSmartScreenExplorer",
+                Title = loc["TwDisableSmartScreenExplorer_Title"],
+                Description = loc["TwDisableSmartScreenExplorer_Desc"],
+                Category = loc["CatSystem"],
+                Hive = RegistryHive.CurrentUser,
+                KeyPath = @"Software\Microsoft\Windows\CurrentVersion\Policies\Attachments",
+                ValueName = "SaveZoneInformation",
+                ValueKind = RegistryValueKind.DWord,
+                OnValue = 1, OffValue = 2, MissingMeansValue = 2
+            },
+            new()
+            {
+                Key = "TwEnableClearTypeText",
+                Title = loc["TwEnableClearTypeText_Title"],
+                Description = loc["TwEnableClearTypeText_Desc"],
+                Category = loc["CatPersonalization"],
+                Hive = RegistryHive.CurrentUser,
+                KeyPath = @"Control Panel\Desktop",
+                ValueName = "FontSmoothing",
+                ValueKind = RegistryValueKind.String,
+                OnValue = "2", OffValue = "0", MissingMeansValue = "2",
+                RequiresExplorerRestart = true
+            },
+            new()
+            {
+                Key = "TwDisableOfferRemoteAssistance",
+                Title = loc["TwDisableOfferRemoteAssistance_Title"],
+                Description = loc["TwDisableOfferRemoteAssistance_Desc"],
+                Category = loc["CatPrivacy"],
+                Hive = RegistryHive.LocalMachine,
+                KeyPath = @"SYSTEM\CurrentControlSet\Control\Remote Assistance",
+                ValueName = "fAllowUnsolicited",
+                ValueKind = RegistryValueKind.DWord,
+                OnValue = 0, OffValue = 1, MissingMeansValue = 1
+            },
         };
         return items;
     }
