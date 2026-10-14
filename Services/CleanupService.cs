@@ -29,18 +29,22 @@ public class CleanupService
         };
     }
 
-    public long ScanSizeBytes(CleanupTarget target)
+    public long ScanSizeBytes(CleanupTarget target, Action<int>? progress = null)
     {
         if (!Directory.Exists(target.Path)) return 0;
         long total = 0;
+        int count = 0;
         foreach (var file in SafeEnumerateFiles(target.Path))
         {
-            try { total += new FileInfo(file).Length; } catch { /* locked/inaccessible, skip */ }
+            count++;
+            if (count % 25 == 0) progress?.Invoke(count);
+            try { total += new FileInfo(file).Length; } catch { }
         }
+        progress?.Invoke(count);
         return total;
     }
 
-    public CleanupResult Clean(CleanupTarget target)
+    public CleanupResult Clean(CleanupTarget target, Action<int>? progress = null)
     {
         long freed = 0;
         int deleted = 0;
@@ -49,8 +53,11 @@ public class CleanupService
         if (!Directory.Exists(target.Path))
             return new CleanupResult(target.Key, 0, 0, errors);
 
+        int count = 0;
         foreach (var file in SafeEnumerateFiles(target.Path))
         {
+            count++;
+            if (count % 25 == 0) progress?.Invoke(count);
             try
             {
                 var info = new FileInfo(file);
@@ -66,22 +73,31 @@ public class CleanupService
             }
         }
 
+        progress?.Invoke(count);
         return new CleanupResult(target.Key, freed, deleted, errors);
     }
 
     private static IEnumerable<string> SafeEnumerateFiles(string root)
     {
-        IEnumerable<string> files;
-        try
+        var pending = new Stack<string>();
+        pending.Push(root);
+        while (pending.Count > 0)
         {
-            files = Directory.EnumerateFiles(root, "*", SearchOption.AllDirectories);
+            string current = pending.Pop();
+            string[] files;
+            try { files = Directory.GetFiles(current); } catch { continue; }
+            foreach (var file in files) yield return file;
+            string[] directories;
+            try { directories = Directory.GetDirectories(current); } catch { continue; }
+            foreach (var directory in directories)
+            {
+                try
+                {
+                    var attributes = File.GetAttributes(directory);
+                    if ((attributes & FileAttributes.ReparsePoint) == 0) pending.Push(directory);
+                }
+                catch { }
+            }
         }
-        catch
-        {
-            yield break;
-        }
-
-        foreach (var f in files)
-            yield return f;
     }
 }

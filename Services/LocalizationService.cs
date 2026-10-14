@@ -486,6 +486,13 @@ public class LocalizationService : INotifyPropertyChanged
         // Cleanup status/dialog messages
         ["Cleanup_NotScanned"] = ("не сканировано", "not scanned", "не сканувалося"),
         ["Cleanup_NothingSelected"] = ("Ничего не выбрано.", "Nothing selected.", "Нічого не вибрано."),
+        ["Cleanup_Progress"] = ("ВЫПОЛНЕНО {0}% — {1} ({2})", "COMPLETED {0}% — {1} ({2})", "ВИКОНАНО {0}% — {1} ({2})"),
+        ["Cleanup_Scanning"] = ("Сканирование файлов", "Scanning files", "Сканування файлів"),
+        ["Cleanup_Cleaning"] = ("Очистка файлов", "Cleaning files", "Очищення файлів"),
+        ["Cleanup_ScanItemDone"] = ("Проверено папок", "Folders scanned", "Перевірено папок"),
+        ["Cleanup_CleanItemDone"] = ("Обработано папок", "Folders processed", "Оброблено папок"),
+        ["Cleanup_ScanComplete"] = ("Сканирование завершено", "Scan complete", "Сканування завершено"),
+        ["Cleanup_OperationError"] = ("Ошибка операции: {0}", "Operation error: {0}", "Помилка операції: {0}"),
         ["Cleanup_ConfirmTitle"] = ("Подтверждение очистки", "Confirm cleanup", "Підтвердження очищення"),
         ["Cleanup_ConfirmBody"] = ("Удалить содержимое {0} выбранных папок с временными файлами? Действие необратимо.",
                                     "Delete the contents of {0} selected temp folders? This cannot be undone.",
