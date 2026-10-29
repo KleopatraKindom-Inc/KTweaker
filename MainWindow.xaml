@@ -32,6 +32,9 @@
                     <RadioButton x:Name="NavDashboard" GroupName="Nav"
                                  Content="{Binding Source={x:Static svc:LocalizationService.Instance}, Path=[NavDashboard]}"
                                  Style="{StaticResource NavButtonStyle}" Checked="Nav_Checked"/>
+                    <RadioButton x:Name="NavSecurity" GroupName="Nav"
+                                 Content="{Binding Source={x:Static svc:LocalizationService.Instance}, Path=[NavSecurity]}"
+                                 Style="{StaticResource NavButtonStyle}" Checked="Nav_Checked"/>
                     <RadioButton x:Name="NavTweaks" GroupName="Nav"
                                  Content="{Binding Source={x:Static svc:LocalizationService.Instance}, Path=[NavTweaks]}"
                                  Style="{StaticResource NavButtonStyle}" Checked="Nav_Checked"/>

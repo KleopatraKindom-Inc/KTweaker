@@ -1409,6 +1409,105 @@ public class RegistryTweakService
                 ValueKind = RegistryValueKind.DWord,
                 OnValue = 0, OffValue = 1, MissingMeansValue = 1
             },
+
+
+            // --- Security tab: ransomware / screen-locker prevention (auto-generated) ---
+            new()
+            {
+                Key = "TwRansomwareProtection",
+                Title = loc["TwRansomwareProtection_Title"],
+                Description = loc["TwRansomwareProtection_Desc"],
+                Category = loc["CatSecurity"],
+                Hive = RegistryHive.LocalMachine,
+                KeyPath = @"SOFTWARE\Microsoft\Windows Defender\Windows Defender Exploit Guard\Controlled Folder Access",
+                ValueName = "EnableControlledFolderAccess",
+                ValueKind = RegistryValueKind.DWord,
+                OnValue = 1, OffValue = 0, MissingMeansValue = 0
+            },
+            new()
+            {
+                Key = "TwAsrRansomware",
+                Title = loc["TwAsrRansomware_Title"],
+                Description = loc["TwAsrRansomware_Desc"],
+                Category = loc["CatSecurity"],
+                Hive = RegistryHive.LocalMachine,
+                KeyPath = @"SOFTWARE\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules",
+                ValueName = "c1db55ab-c21a-4637-bb3f-a12568109d35",
+                ValueKind = RegistryValueKind.DWord,
+                OnValue = 1, OffValue = 0, MissingMeansValue = 0
+            },
+            new()
+            {
+                Key = "TwAsrEmailExec",
+                Title = loc["TwAsrEmailExec_Title"],
+                Description = loc["TwAsrEmailExec_Desc"],
+                Category = loc["CatSecurity"],
+                Hive = RegistryHive.LocalMachine,
+                KeyPath = @"SOFTWARE\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules",
+                ValueName = "be9ba2d9-53ea-4cdc-84e5-9b1eeee46550",
+                ValueKind = RegistryValueKind.DWord,
+                OnValue = 1, OffValue = 0, MissingMeansValue = 0
+            },
+            new()
+            {
+                Key = "TwAsrObfuscatedScripts",
+                Title = loc["TwAsrObfuscatedScripts_Title"],
+                Description = loc["TwAsrObfuscatedScripts_Desc"],
+                Category = loc["CatSecurity"],
+                Hive = RegistryHive.LocalMachine,
+                KeyPath = @"SOFTWARE\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules",
+                ValueName = "5beb7efe-fd9a-4556-801d-275e5ffc04cc",
+                ValueKind = RegistryValueKind.DWord,
+                OnValue = 1, OffValue = 0, MissingMeansValue = 0
+            },
+            new()
+            {
+                Key = "TwSmartScreenAppsFiles",
+                Title = loc["TwSmartScreenAppsFiles_Title"],
+                Description = loc["TwSmartScreenAppsFiles_Desc"],
+                Category = loc["CatSecurity"],
+                Hive = RegistryHive.LocalMachine,
+                KeyPath = @"SOFTWARE\Policies\Microsoft\Windows\System",
+                ValueName = "EnableSmartScreen",
+                ValueKind = RegistryValueKind.DWord,
+                OnValue = 1, OffValue = 0, MissingMeansValue = 0
+            },
+            new()
+            {
+                Key = "TwFirewallPrivateProfile",
+                Title = loc["TwFirewallPrivateProfile_Title"],
+                Description = loc["TwFirewallPrivateProfile_Desc"],
+                Category = loc["CatSecurity"],
+                Hive = RegistryHive.LocalMachine,
+                KeyPath = @"SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile",
+                ValueName = "EnableFirewall",
+                ValueKind = RegistryValueKind.DWord,
+                OnValue = 1, OffValue = 0, MissingMeansValue = 1
+            },
+            new()
+            {
+                Key = "TwFirewallPublicProfile",
+                Title = loc["TwFirewallPublicProfile_Title"],
+                Description = loc["TwFirewallPublicProfile_Desc"],
+                Category = loc["CatSecurity"],
+                Hive = RegistryHive.LocalMachine,
+                KeyPath = @"SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile",
+                ValueName = "EnableFirewall",
+                ValueKind = RegistryValueKind.DWord,
+                OnValue = 1, OffValue = 0, MissingMeansValue = 1
+            },
+            new()
+            {
+                Key = "TwUacSecureDefault",
+                Title = loc["TwUacSecureDefault_Title"],
+                Description = loc["TwUacSecureDefault_Desc"],
+                Category = loc["CatSecurity"],
+                Hive = RegistryHive.LocalMachine,
+                KeyPath = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System",
+                ValueName = "ConsentPromptBehaviorAdmin",
+                ValueKind = RegistryValueKind.DWord,
+                OnValue = 5, OffValue = 0, MissingMeansValue = 5
+            },
         };
         return items;
     }

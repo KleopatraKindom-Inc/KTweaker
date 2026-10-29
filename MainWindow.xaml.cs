@@ -16,7 +16,7 @@ public partial class MainWindow : Window
 
     private void Nav_Checked(object sender, RoutedEventArgs e)
     {
-        if (sender != NavDashboard && sender != NavTweaks && sender != NavProcesses &&
+        if (sender != NavDashboard && sender != NavSecurity && sender != NavTweaks && sender != NavProcesses &&
             sender != NavCleanup && sender != NavUwp && sender != NavSystemInfo && sender != NavSettings)
             return;
 
@@ -25,6 +25,7 @@ public partial class MainWindow : Window
         Page page = sender switch
         {
             _ when sender == NavDashboard => new DashboardPage(),
+            _ when sender == NavSecurity => new SecurityPage(),
             _ when sender == NavTweaks => new TweaksPage(),
             _ when sender == NavProcesses => new ProcessManagerPage(),
             _ when sender == NavCleanup => new CleanupPage(),

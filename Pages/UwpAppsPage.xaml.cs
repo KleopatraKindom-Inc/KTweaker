@@ -70,21 +70,32 @@ public partial class UwpAppsPage : Page
     private async Task LoadInstalledStatusAsync()
     {
         var loc = LocalizationService.Instance;
-        HashSet<string> installed;
+        HashSet<string>? installed = null;
+        string listError = "";
         try
         {
             installed = await Task.Run(_service.GetInstalledPackageNames);
         }
-        catch
+        catch (Exception ex)
         {
-            installed = new HashSet<string>();
+            listError = ex.Message;
         }
 
         foreach (var row in _rows)
         {
-            bool isInstalled = _service.IsInstalled(row.App, installed);
-            row.IsInstalled = isInstalled;
-            row.Status = loc[isInstalled ? "UwpInstalled" : "UwpNotInstalled"];
+            if (installed is null)
+            {
+                // Couldn't read the app list. Say why (instead of pretending nothing is installed)
+                // and keep "Remove" available - it is safe to run on an app that is already gone.
+                row.IsInstalled = true;
+                row.Status = loc.Format("UwpStatusUnknown", listError);
+            }
+            else
+            {
+                bool isInstalled = _service.IsInstalled(row.App, installed);
+                row.IsInstalled = isInstalled;
+                row.Status = loc[isInstalled ? "UwpInstalled" : "UwpNotInstalled"];
+            }
             row.IsBusy = false;
         }
     }
@@ -95,45 +106,54 @@ public partial class UwpAppsPage : Page
         var loc = LocalizationService.Instance;
 
         row.IsBusy = true;
-
-        if (row.IsInstalled)
+        try
         {
-            row.Status = loc["UwpRemoving"];
-            var (success, error) = await Task.Run(() => _service.Remove(row.App));
-
-            if (success)
+            if (row.IsInstalled)
             {
-                row.IsInstalled = false;
-                row.Status = loc["UwpRemoved"];
+                row.Status = loc["UwpRemoving"];
+                var (success, error) = await Task.Run(() => _service.Remove(row.App));
+
+                if (success)
+                {
+                    row.IsInstalled = false;
+                    row.Status = loc["UwpRemoved"];
+                }
+                else
+                {
+                    row.Status = loc.Format("UwpRemoveError", error);
+                }
             }
             else
             {
-                row.Status = loc.Format("UwpRemoveError", error);
+                row.Status = loc["UwpInstalling"];
+                var (success, error) = await Task.Run(() => _service.Install(row.App));
+
+                if (success)
+                {
+                    row.IsInstalled = true;
+                    row.Status = loc["UwpInstalledNow"];
+                }
+                else if (error == "NOT_PROVISIONED")
+                {
+                    // Windows no longer has the package files at all, so offline re-registration
+                    // is impossible - send the person to the Store instead.
+                    _service.OpenStorePage(row.App);
+                    row.Status = loc["UwpOpenedStore"];
+                }
+                else
+                {
+                    row.Status = loc.Format("UwpInstallError", error);
+                }
             }
         }
-        else
+        catch (Exception ex)
         {
-            row.Status = loc["UwpInstalling"];
-            var (success, error) = await Task.Run(() => _service.Install(row.App));
-
-            if (success)
-            {
-                row.IsInstalled = true;
-                row.Status = loc["UwpInstalledNow"];
-            }
-            else if (error == "NOT_PROVISIONED")
-            {
-                // The package was fully removed from this machine (not just for this user) —
-                // re-registration isn't possible offline, so send the person to the Store instead.
-                _service.OpenStorePage(row.App);
-                row.Status = loc["UwpOpenedStore"];
-            }
-            else
-            {
-                row.Status = loc.Format("UwpInstallError", error);
-            }
+            // Never let a failed install/remove take the whole app down.
+            row.Status = loc.Format(row.IsInstalled ? "UwpRemoveError" : "UwpInstallError", ex.Message);
         }
-
-        row.IsBusy = false;
+        finally
+        {
+            row.IsBusy = false;
+        }
     }
 }

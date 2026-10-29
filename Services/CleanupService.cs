@@ -6,10 +6,15 @@ using System.Linq;
 namespace KleopatraKindomTweaker.Services;
 
 public record CleanupTarget(string Key, string Path);
-public record CleanupResult(string Key, long BytesFreed, int FilesDeleted, List<string> Errors);
+
+/// <param name="Skipped">Files that couldn't be deleted (in use / no permission).</param>
+/// <param name="Errors">First few error messages only — the full count is in <paramref name="Skipped"/>.</param>
+public record CleanupResult(string Key, long BytesFreed, int FilesDeleted, int Skipped, List<string> Errors);
 
 public class CleanupService
 {
+    private const int MaxErrorMessagesKept = 50;
+
     /// <summary>
     /// Known-safe junk locations. We never touch user documents/desktop — only
     /// caches that Windows/apps regenerate automatically.
@@ -29,39 +34,38 @@ public class CleanupService
         };
     }
 
-    public long ScanSizeBytes(CleanupTarget target, Action<int>? progress = null)
+    public long ScanSizeBytes(CleanupTarget target)
     {
         if (!Directory.Exists(target.Path)) return 0;
         long total = 0;
-        int count = 0;
         foreach (var file in SafeEnumerateFiles(target.Path))
         {
-            count++;
-            if (count % 25 == 0) progress?.Invoke(count);
-            try { total += new FileInfo(file).Length; } catch { }
+            try { total += new FileInfo(file).Length; } catch { /* locked/inaccessible, skip */ }
         }
-        progress?.Invoke(count);
         return total;
     }
 
-    public CleanupResult Clean(CleanupTarget target, Action<int>? progress = null)
+    public CleanupResult Clean(CleanupTarget target)
     {
         long freed = 0;
         int deleted = 0;
+        int skipped = 0;
         var errors = new List<string>();
 
         if (!Directory.Exists(target.Path))
-            return new CleanupResult(target.Key, 0, 0, errors);
+            return new CleanupResult(target.Key, 0, 0, 0, errors);
 
-        int count = 0;
         foreach (var file in SafeEnumerateFiles(target.Path))
         {
-            count++;
-            if (count % 25 == 0) progress?.Invoke(count);
             try
             {
                 var info = new FileInfo(file);
                 long size = info.Length;
+
+                // Read-only files can't be deleted until the flag is cleared.
+                if ((info.Attributes & FileAttributes.ReadOnly) != 0)
+                    info.Attributes &= ~FileAttributes.ReadOnly;
+
                 info.Delete();
                 freed += size;
                 deleted++;
@@ -69,34 +73,58 @@ public class CleanupService
             catch (Exception ex)
             {
                 // File in use / permission denied — expected for some cache files, skip and continue.
-                errors.Add($"{Path.GetFileName(file)}: {ex.Message}");
+                skipped++;
+                if (errors.Count < MaxErrorMessagesKept)
+                    errors.Add($"{Path.GetFileName(file)}: {ex.Message}");
             }
         }
 
-        progress?.Invoke(count);
-        return new CleanupResult(target.Key, freed, deleted, errors);
+        return new CleanupResult(target.Key, freed, deleted, skipped, errors);
     }
 
+    /// <summary>
+    /// Enumerates files under <paramref name="root"/> without ever throwing. The old
+    /// Directory.EnumerateFiles(..., SearchOption.AllDirectories) overload throws
+    /// UnauthorizedAccessException from MoveNext() the moment it meets a folder it can't
+    /// open (common in Windows\Temp, Prefetch, SoftwareDistribution), which aborted the whole
+    /// scan/clean. EnumerationOptions.IgnoreInaccessible skips those folders instead, and
+    /// skipping reparse points (junctions/symlinks) avoids loops and leaving the target folder.
+    /// </summary>
     private static IEnumerable<string> SafeEnumerateFiles(string root)
     {
-        var pending = new Stack<string>();
-        pending.Push(root);
-        while (pending.Count > 0)
+        var options = new EnumerationOptions
         {
-            string current = pending.Pop();
-            string[] files;
-            try { files = Directory.GetFiles(current); } catch { continue; }
-            foreach (var file in files) yield return file;
-            string[] directories;
-            try { directories = Directory.GetDirectories(current); } catch { continue; }
-            foreach (var directory in directories)
+            RecurseSubdirectories = true,
+            IgnoreInaccessible = true,
+            AttributesToSkip = FileAttributes.ReparsePoint,
+            ReturnSpecialDirectories = false,
+        };
+
+        IEnumerator<string> enumerator;
+        try
+        {
+            enumerator = Directory.EnumerateFiles(root, "*", options).GetEnumerator();
+        }
+        catch
+        {
+            yield break;
+        }
+
+        using (enumerator)
+        {
+            while (true)
             {
+                string current;
                 try
                 {
-                    var attributes = File.GetAttributes(directory);
-                    if ((attributes & FileAttributes.ReparsePoint) == 0) pending.Push(directory);
+                    if (!enumerator.MoveNext()) yield break;
+                    current = enumerator.Current;
                 }
-                catch { }
+                catch
+                {
+                    yield break; // belt and braces: never let enumeration take the caller down
+                }
+                yield return current;
             }
         }
     }

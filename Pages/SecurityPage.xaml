@@ -1,0 +1,70 @@
+<Page x:Class="KleopatraKindomTweaker.Pages.SecurityPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:svc="clr-namespace:KleopatraKindomTweaker.Services">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="0,0,8,0">
+            <TextBlock Text="{Binding Source={x:Static svc:LocalizationService.Instance}, Path=[SecurityTitle]}"
+                       FontSize="24" FontWeight="Bold"
+                       Foreground="{DynamicResource TextPrimaryBrush}" Margin="0,0,0,8"/>
+            <TextBlock Text="{Binding Source={x:Static svc:LocalizationService.Instance}, Path=[SecurityIntro]}"
+                       TextWrapping="Wrap" Margin="0,0,0,16"
+                       Foreground="{DynamicResource TextSecondaryBrush}"/>
+
+            <!-- Defender status -->
+            <Border Style="{StaticResource CardStyle}" Margin="0,0,0,16">
+                <StackPanel>
+                    <TextBlock Text="{Binding Source={x:Static svc:LocalizationService.Instance}, Path=[SecurityDefenderStatusTitle]}"
+                               FontWeight="SemiBold" FontSize="16"
+                               Foreground="{DynamicResource TextPrimaryBrush}" Margin="0,0,0,8"/>
+                    <TextBlock x:Name="DefenderStatusText" TextWrapping="Wrap"
+                               Foreground="{DynamicResource TextSecondaryBrush}"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Quick protect -->
+            <Border Style="{StaticResource CardStyle}" Margin="0,0,0,16">
+                <StackPanel>
+                    <Button x:Name="ProtectNowButton"
+                            Content="{Binding Source={x:Static svc:LocalizationService.Instance}, Path=[SecurityProtectButton]}"
+                            Style="{StaticResource PrimaryButtonStyle}"
+                            HorizontalAlignment="Left" Click="ProtectNow_Click"/>
+                    <TextBlock x:Name="StatusText" Margin="0,10,0,0" TextWrapping="Wrap"
+                               Foreground="{DynamicResource TextSecondaryBrush}"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Individual toggles -->
+            <ItemsControl x:Name="TweaksControl">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Style="{StaticResource CardStyle}" Margin="0,0,0,8">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="{Binding Title}" FontWeight="SemiBold"
+                                               Foreground="{DynamicResource TextPrimaryBrush}"/>
+                                    <TextBlock Text="{Binding Description}" FontSize="12"
+                                               Foreground="{DynamicResource TextSecondaryBrush}"
+                                               TextWrapping="Wrap" Margin="0,4,0,0"/>
+                                </StackPanel>
+                                <CheckBox Grid.Column="1" Style="{StaticResource ToggleSwitchStyle}"
+                                          IsChecked="{Binding IsEnabled, Mode=TwoWay}"
+                                          VerticalAlignment="Center"
+                                          Click="Tweak_Click"
+                                          Tag="{Binding}"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <TextBlock Text="{Binding Source={x:Static svc:LocalizationService.Instance}, Path=[SecurityThirdPartyNote]}"
+                       TextWrapping="Wrap" FontSize="12" Margin="0,8,0,16"
+                       Foreground="{DynamicResource TextSecondaryBrush}"/>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

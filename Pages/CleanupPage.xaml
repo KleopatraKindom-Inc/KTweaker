@@ -12,16 +12,17 @@
             <TextBlock Text="{Binding Source={x:Static svc:LocalizationService.Instance}, Path=[CleanupTitle]}"
                        FontSize="24" FontWeight="Bold"
                        Foreground="{DynamicResource TextPrimaryBrush}"/>
-            <Button x:Name="ScanButton" Grid.Column="1"
+            <Button Grid.Column="1"
                     Content="{Binding Source={x:Static svc:LocalizationService.Instance}, Path=[ScanButton]}"
-                    Margin="0,0,8,0" Padding="14,8" Click="Scan_Click"/>
-            <Button x:Name="CleanButton" Grid.Column="2"
+                    x:Name="ScanBtn" Margin="0,0,8,0" Padding="14,8" Click="Scan_Click"/>
+            <Button Grid.Column="2"
                     Content="{Binding Source={x:Static svc:LocalizationService.Instance}, Path=[CleanSelectedButton]}"
-                    Style="{StaticResource PrimaryButtonStyle}"
+                    x:Name="CleanBtn" Style="{StaticResource PrimaryButtonStyle}"
                     Click="Clean_Click"/>
         </Grid>
 
-        <ProgressBar x:Name="ProgressBar" Height="8" Margin="0,0,0,8" Minimum="0" Maximum="100" Value="0" Visibility="Visible" />
+        <ProgressBar x:Name="BusyBar" IsIndeterminate="True" Height="4" Margin="0,0,0,12"
+                     Visibility="Collapsed"/>
 
         <ItemsControl x:Name="TargetsControl">
             <ItemsControl.ItemTemplate>

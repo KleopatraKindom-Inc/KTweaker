@@ -55,7 +55,7 @@
                                                 <CheckBox Grid.Column="1" Style="{StaticResource ToggleSwitchStyle}"
                                                           IsChecked="{Binding IsEnabled, Mode=TwoWay}"
                                                           VerticalAlignment="Center"
-                                                          Checked="Tweak_Toggled" Unchecked="Tweak_Toggled"
+                                                          Click="Tweak_Click"
                                                           Tag="{Binding}"/>
                                             </Grid>
                                         </Border>

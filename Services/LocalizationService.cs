@@ -88,9 +88,9 @@ public class LocalizationService : INotifyPropertyChanged
                                      "Not enough permissions. Run the app as administrator.",
                                      "Недостатньо прав. Запусти застосунок від імені адміністратора."),
         ["AboutSectionTitle"] = ("О программе", "About", "Про програму"),
-        ["AboutText"] = ("KleopatraKindomTweaker v2.0 by KleoptraKindom, Inc.",
-                          "KleopatraKindomTweaker v2.0 by KleoptraKindom, Inc.",
-                          "KleopatraKindomTweaker v2.0 by KleoptraKindom, Inc."),
+        ["AboutText"] = ("KleopatraKindomTweaker v3.0 by KleoptraKindom, Inc.",
+                          "KleopatraKindomTweaker v3.0 by KleoptraKindom, Inc.",
+                          "KleopatraKindomTweaker v3.0 by KleoptraKindom, Inc."),
 
         // Dashboard summary (code-behind formatted strings)
         ["SummaryOs"] = ("ОС: {0}", "OS: {0}", "ОС: {0}"),
@@ -361,6 +361,40 @@ public class LocalizationService : INotifyPropertyChanged
         ["TwDisableOfferRemoteAssistance_Title"] = ("Запретить удалённую помощь без запроса", "Block unsolicited Remote Assistance offers", "Заборонити віддалену допомогу без запиту"),
         ["TwDisableOfferRemoteAssistance_Desc"] = ("Запрещает другим людям предлагать удалённую помощь без явного запроса пользователя.", "Prevents other people from offering unsolicited Remote Assistance sessions.", "Забороняє іншим людям пропонувати віддалену допомогу без явного запиту користувача."),
 
+        // --- Security tab: tweak translations (auto-generated) ---
+        ["CatSecurity"] = ("Безопасность", "Security", "Безпека"),
+        ["TwRansomwareProtection_Title"] = ("Защита от программ-вымогателей", "Ransomware protection", "Захист від програм-вимагачів"),
+        ["TwRansomwareProtection_Desc"] = ("Включает контролируемый доступ к папкам (Controlled Folder Access) — блокирует неизвестным программам изменение файлов в защищённых папках (Документы, Рабочий стол, Изображения и др.). Это прямая защита от шифровальщиков и экранных блокировщиков.", "Turns on Controlled Folder Access — blocks unknown programs from modifying files in protected folders (Documents, Desktop, Pictures, etc.). Direct protection against ransomware and screen-locking malware.", "Вмикає контрольований доступ до папок (Controlled Folder Access) — блокує невідомим програмам зміну файлів у захищених папках (Документи, Робочий стіл, Зображення тощо). Це пряма протидія шифрувальникам та блокувальникам екрана."),
+        ["TwAsrRansomware_Title"] = ("Правило ASR: защита от шифровальщиков", "ASR rule: advanced ransomware protection", "Правило ASR: захист від шифрувальників"),
+        ["TwAsrRansomware_Desc"] = ("Включает встроенное правило снижения площади атаки (Attack Surface Reduction) Microsoft Defender, которое специально анализирует и блокирует поведение, характерное для программ-вымогателей.", "Enables Microsoft Defender's built-in Attack Surface Reduction rule that specifically analyzes and blocks behavior typical of ransomware.", "Вмикає вбудоване правило зниження площі атаки (Attack Surface Reduction) Microsoft Defender, яке спеціально аналізує та блокує поведінку, типову для програм-вимагачів."),
+        ["TwAsrEmailExec_Title"] = ("Правило ASR: блокировать вложения из почты", "ASR rule: block email attachments", "Правило ASR: блокувати вкладення з пошти"),
+        ["TwAsrEmailExec_Desc"] = ("Блокирует запуск исполняемых файлов (.exe, .scr и т.п.), полученных через почтовые клиенты и веб-почту — частый способ заражения через фишинговые письма.", "Blocks executable content (.exe, .scr, etc.) launched from email clients and webmail — a common infection path via phishing emails.", "Блокує запуск виконуваних файлів (.exe, .scr тощо), отриманих через поштові клієнти та веб-пошту — поширений спосіб зараження через фішингові листи."),
+        ["TwAsrObfuscatedScripts_Title"] = ("Правило ASR: блокировать замаскированные скрипты", "ASR rule: block obfuscated scripts", "Правило ASR: блокувати замасковані скрипти"),
+        ["TwAsrObfuscatedScripts_Desc"] = ("Блокирует выполнение подозрительно замаскированных (обфусцированных) скриптов PowerShell/JavaScript/VBScript — распространённый приём, которым пользуются вредоносные программы, чтобы спрятаться от антивируса.", "Blocks execution of suspiciously obfuscated PowerShell/JavaScript/VBScript — a common technique malware uses to hide from antivirus scanners.", "Блокує виконання підозріло замаскованих (обфускованих) скриптів PowerShell/JavaScript/VBScript — поширений прийом, яким користуються шкідливі програми, щоб сховатися від антивірусу."),
+        ["TwSmartScreenAppsFiles_Title"] = ("SmartScreen для приложений и файлов", "SmartScreen for apps and files", "SmartScreen для застосунків і файлів"),
+        ["TwSmartScreenAppsFiles_Desc"] = ("Проверяет запускаемые приложения и файлы через облачную репутационную базу Microsoft и предупреждает о неизвестных или опасных программах перед их запуском.", "Checks launched apps and files against Microsoft's cloud reputation database and warns about unknown or dangerous programs before they run.", "Перевіряє застосунки та файли, що запускаються, через хмарну репутаційну базу Microsoft і попереджає про невідомі чи небезпечні програми перед їх запуском."),
+        ["TwFirewallPrivateProfile_Title"] = ("Брандмауэр для частных сетей", "Firewall for private networks", "Брандмауер для приватних мереж"),
+        ["TwFirewallPrivateProfile_Desc"] = ("Убеждается, что брандмауэр Windows включён для профиля частных сетей (домашние/рабочие сети), даже если его кто-то отключил вручную.", "Makes sure Windows Firewall is turned on for the private network profile (home/work networks), even if it was disabled manually at some point.", "Переконується, що брандмауер Windows увімкнено для профілю приватних мереж (домашні/робочі мережі), навіть якщо хтось вимкнув його вручну."),
+        ["TwFirewallPublicProfile_Title"] = ("Брандмауэр для публичных сетей", "Firewall for public networks", "Брандмауер для публічних мереж"),
+        ["TwFirewallPublicProfile_Desc"] = ("Убеждается, что брандмауэр Windows включён для профиля публичных сетей (кафе, аэропорты, открытый Wi-Fi) — именно там риск атаки из сети самый высокий.", "Makes sure Windows Firewall is turned on for the public network profile (cafés, airports, open Wi-Fi) — where the risk of a network attack is highest.", "Переконується, що брандмауер Windows увімкнено для профілю публічних мереж (кафе, аеропорти, відкритий Wi-Fi) — саме там ризик мережевої атаки найвищий."),
+        ["TwUacSecureDefault_Title"] = ("Безопасный уровень контроля учётных записей (UAC)", "Secure User Account Control (UAC) level", "Безпечний рівень контролю облікових записів (UAC)"),
+        ["TwUacSecureDefault_Desc"] = ("Возвращает ползунок контроля учётных записей на рекомендуемый Microsoft уровень — уведомлять при попытке программ внести изменения в систему. Если его когда-то ослабили, это особенно важно восстановить.", "Restores the User Account Control slider to Microsoft's recommended level — notify when programs try to make changes to the system. Especially worth restoring if it was weakened at some point.", "Повертає повзунок контролю облікових записів на рекомендований Microsoft рівень — повідомляти, коли програми намагаються внести зміни в систему. Особливо важливо відновити, якщо його колись послабили."),
+
+        // --- Security tab: page text ---
+        ["NavSecurity"] = ("🛡  Безопасность", "🛡  Security", "🛡  Безпека"),
+        ["SecurityTitle"] = ("Безопасность", "Security", "Безпека"),
+        ["SecurityIntro"] = ("Эти настройки защищают от программ-вымогателей и блокировщиков экрана — вредоносных программ, которые шифруют или блокируют доступ к вашим файлам и системе. Рекомендуется включить их все.", "These settings protect against ransomware and screen-locking malware — malicious software that encrypts or blocks access to your files and system. It's recommended to turn them all on.", "Ці налаштування захищають від програм-вимагачів та блокувальників екрана — шкідливих програм, які шифрують або блокують доступ до ваших файлів і системи. Рекомендується увімкнути їх усі."),
+        ["SecurityProtectButton"] = ("Защитить сейчас", "Protect now", "Захистити зараз"),
+        ["SecurityDefenderStatusTitle"] = ("Статус Защитника Windows", "Windows Defender status", "Статус Захисника Windows"),
+        ["SecurityRefreshing"] = ("Проверка…", "Checking…", "Перевірка…"),
+        ["SecurityDefenderRealtimeOn"] = ("Защита в реальном времени: включена", "Real-time protection: on", "Захист у реальному часі: увімкнено"),
+        ["SecurityDefenderRealtimeOff"] = ("Защита в реальном времени: ВЫКЛЮЧЕНА", "Real-time protection: OFF", "Захист у реальному часі: ВИМКНЕНО"),
+        ["SecurityDefenderAvOn"] = ("Антивирус: включён", "Antivirus: on", "Антивірус: увімкнено"),
+        ["SecurityDefenderAvOff"] = ("Антивирус: выключен", "Antivirus: off", "Антивірус: вимкнено"),
+        ["SecurityDefenderSignatureAge"] = ("Последнее обновление баз: {0} дн. назад", "Virus definitions updated: {0} days ago", "Останнє оновлення баз: {0} дн. тому"),
+        ["SecurityDefenderUnavailable"] = ("Не удалось получить статус Защитника Windows: {0}. Возможно, используется сторонний антивирус — тогда это нормально.", "Couldn't read Windows Defender status: {0}. This is expected if you use a third-party antivirus instead.", "Не вдалося отримати статус Захисника Windows: {0}. Можливо, використовується сторонній антивірус — тоді це нормально."),
+        ["SecurityThirdPartyNote"] = ("Если вы используете другой антивирус, часть этих переключателей может не действовать — Windows Defender уступает управление стороннему ПО.", "If you use a different antivirus, some of these switches may have no effect — Windows Defender steps aside for third-party security software.", "Якщо ви використовуєте інший антивірус, частина цих перемикачів може не діяти — Windows Defender поступається керуванням стороннім ПЗ."),
+
         // UWP app install/removal page
         ["NavUwp"] = ("📦  UWP-приложения", "📦  UWP Apps", "📦  UWP-застосунки"),
         ["UwpTitle"] = ("Удаление и установка UWP-приложений", "Install and remove UWP apps", "Видалення та встановлення UWP-застосунків"),
@@ -380,6 +414,7 @@ public class LocalizationService : INotifyPropertyChanged
         ["UwpOpenedStore"] = ("Открыт Microsoft Store — приложение было полностью удалено, переустановите оттуда.",
                                "Opened Microsoft Store — the app was fully removed from this PC, reinstall it from there.",
                                "Відкрито Microsoft Store — застосунок був повністю видалений із цього ПК, перевстановіть його звідти."),
+        ["UwpStatusUnknown"] = ("Не удалось определить состояние: {0}", "Could not determine app state: {0}", "Не вдалося визначити стан: {0}"),
         ["UwpCheckingStatus"] = ("Проверка установленных приложений…", "Checking installed apps…", "Перевірка встановлених застосунків…"),
 
 
@@ -429,8 +464,8 @@ public class LocalizationService : INotifyPropertyChanged
         ["CleanupNothingSelected"] = ("Ничего не выбрано.", "Nothing selected.", "Нічого не вибрано."),
         ["CleanupConfirmTitle"] = ("Подтверждение очистки", "Confirm cleanup", "Підтвердження очищення"),
         ["CleanupConfirmMsg"] = ("Удалить содержимое {0} выбранных папок с временными файлами? Действие необратимо.", "Delete contents of {0} selected temp folders? This cannot be undone.", "Видалити вміст {0} вибраних папок з тимчасовими файлами? Дію неможливо скасувати."),
-        ["CleanupResultOk"] = ("Готово: удалено {0} файлов, освобождено {1}.", "Done: {0} files deleted, {1} freed.", "Готово: видалено {0} файлів, звільнено {1}."),
-        ["CleanupResultPartial"] = ("Удалено {0} файлов, освобождено {1}. {2} файлов пропущено (были заняты другими процессами).", "{0} files deleted, {1} freed. {2} files skipped (locked by other processes).", "Видалено {0} файлів, звільнено {1}. {2} файлів пропущено (були зайняті іншими процесами)."),
+        ["CleanupResultOk"] = ("Выполнено: удалено {0} файлов, освобождено {1}.", "Done: {0} files deleted, {1} freed.", "Виконано: видалено {0} файлів, звільнено {1}."),
+        ["CleanupResultPartial"] = ("Выполнено: удалено {0} файлов, освобождено {1}. Пропущено {2} (заняты другими процессами).", "Done: {0} files deleted, {1} freed. {2} files skipped (in use by other processes).", "Виконано: видалено {0} файлів, звільнено {1}. Пропущено {2} (зайняті іншими процесами)."),
         ["UnitMb"] = ("МБ", "MB", "МБ"),
         ["UnitGb"] = ("ГБ", "GB", "ГБ"),
 
@@ -484,15 +519,12 @@ public class LocalizationService : INotifyPropertyChanged
         ["Tweak_MouseAccel_Desc"] = ("Делает движение курсора линейным (1:1), полезно для игр/дизайна.", "Makes cursor movement linear (1:1), useful for gaming/design.", "Робить рух курсора лінійним (1:1), корисно для ігор/дизайну."),
 
         // Cleanup status/dialog messages
+        ["Cleanup_ScanningTarget"] = ("Сканирование: {0}…", "Scanning: {0}…", "Сканування: {0}…"),
+        ["Cleanup_CleaningTarget"] = ("Очистка: {0}…", "Cleaning: {0}…", "Очищення: {0}…"),
+        ["Cleanup_ScanDone"] = ("Выполнено: найдено {0} для очистки.", "Done: {0} can be cleaned up.", "Виконано: знайдено {0} для очищення."),
+        ["Cleanup_Error"] = ("Ошибка очистки: {0}", "Cleanup error: {0}", "Помилка очищення: {0}"),
         ["Cleanup_NotScanned"] = ("не сканировано", "not scanned", "не сканувалося"),
         ["Cleanup_NothingSelected"] = ("Ничего не выбрано.", "Nothing selected.", "Нічого не вибрано."),
-        ["Cleanup_Progress"] = ("ВЫПОЛНЕНО {0}% — {1} ({2})", "COMPLETED {0}% — {1} ({2})", "ВИКОНАНО {0}% — {1} ({2})"),
-        ["Cleanup_Scanning"] = ("Сканирование файлов", "Scanning files", "Сканування файлів"),
-        ["Cleanup_Cleaning"] = ("Очистка файлов", "Cleaning files", "Очищення файлів"),
-        ["Cleanup_ScanItemDone"] = ("Проверено папок", "Folders scanned", "Перевірено папок"),
-        ["Cleanup_CleanItemDone"] = ("Обработано папок", "Folders processed", "Оброблено папок"),
-        ["Cleanup_ScanComplete"] = ("Сканирование завершено", "Scan complete", "Сканування завершено"),
-        ["Cleanup_OperationError"] = ("Ошибка операции: {0}", "Operation error: {0}", "Помилка операції: {0}"),
         ["Cleanup_ConfirmTitle"] = ("Подтверждение очистки", "Confirm cleanup", "Підтвердження очищення"),
         ["Cleanup_ConfirmBody"] = ("Удалить содержимое {0} выбранных папок с временными файлами? Действие необратимо.",
                                     "Delete the contents of {0} selected temp folders? This cannot be undone.",
